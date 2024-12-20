@@ -19,6 +19,9 @@ use Psr\Log\LoggerInterface;
  *
  * For security be sure to declare any new methods as protected or private.
  */
+/**
+ * @OA\Info(title="My First API", version="0.1")
+ */
 abstract class BaseController extends Controller
 {
     /**

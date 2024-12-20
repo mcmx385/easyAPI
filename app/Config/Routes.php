@@ -53,3 +53,14 @@ $routes->get('/swagger', 'Swagger::index');
 if (is_file(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
     require APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php';
 }
+$routes->resource('failedJobs');
+$routes->resource('migrations');
+$routes->resource('passwordResets');
+$routes->resource('permissionRoles');
+$routes->resource('permissions');
+$routes->resource('posts');
+$routes->resource('roleUsers');
+$routes->resource('roles');
+$routes->resource('userProfiles');
+$routes->resource('userSocialites');
+$routes->resource('users');

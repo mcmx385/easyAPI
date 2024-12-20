@@ -1,0 +1,2380 @@
+openapi: 3.0.0
+info:
+  title: 'My First API'
+  version: '0.1'
+paths:
+  /failedJobs:
+    get:
+      tags:
+        - FailedJobs
+      summary: 'Find list FailedJobs'
+      description: 'Returns list of FailedJobs'
+      operationId: getFailedJobs
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/FailedJobs' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/FailedJobs' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/FailedJobs' } }
+                type: object
+        '404':
+          description: 'FailedJobs not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - FailedJobs
+      summary: 'Add a new FailedJobs to the store'
+      operationId: addFailedJobs
+      requestBody:
+        $ref: '#/components/requestBodies/FailedJobs'
+      responses:
+        '201':
+          description: 'Created FailedJobs'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FailedJobs'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FailedJobs'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/failedJobs/{id}':
+    get:
+      tags:
+        - FailedJobs
+      summary: 'Find FailedJobs by ID'
+      description: 'Returns a single FailedJobs'
+      operationId: getFailedJobsById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of FailedJobs to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FailedJobs'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/FailedJobs'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'FailedJobs not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - FailedJobs
+      summary: 'Update an existing FailedJobs'
+      operationId: updateFailedJobs
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'FailedJobs id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/FailedJobs'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'FailedJobs not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - FailedJobs
+      summary: 'Deletes a FailedJobs'
+      operationId: deleteFailedJobs
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'FailedJobs id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /migrations:
+    get:
+      tags:
+        - Migrations
+      summary: 'Find list Migrations'
+      description: 'Returns list of Migrations'
+      operationId: getMigrations
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Migrations' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Migrations' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/Migrations' } }
+                type: object
+        '404':
+          description: 'Migrations not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - Migrations
+      summary: 'Add a new Migrations to the store'
+      operationId: addMigrations
+      requestBody:
+        $ref: '#/components/requestBodies/Migrations'
+      responses:
+        '201':
+          description: 'Created Migrations'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migrations'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Migrations'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/migrations/{id}':
+    get:
+      tags:
+        - Migrations
+      summary: 'Find Migrations by ID'
+      description: 'Returns a single Migrations'
+      operationId: getMigrationsById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of Migrations to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Migrations'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Migrations'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'Migrations not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - Migrations
+      summary: 'Update an existing Migrations'
+      operationId: updateMigrations
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Migrations id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/Migrations'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Migrations not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - Migrations
+      summary: 'Deletes a Migrations'
+      operationId: deleteMigrations
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Migrations id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /passwordResets:
+    get:
+      tags:
+        - PasswordResets
+      summary: 'Find list PasswordResets'
+      description: 'Returns list of PasswordResets'
+      operationId: getPasswordResets
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/PasswordResets' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/PasswordResets' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/PasswordResets' } }
+                type: object
+        '404':
+          description: 'PasswordResets not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - PasswordResets
+      summary: 'Add a new PasswordResets to the store'
+      operationId: addPasswordResets
+      requestBody:
+        $ref: '#/components/requestBodies/PasswordResets'
+      responses:
+        '201':
+          description: 'Created PasswordResets'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResets'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PasswordResets'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/passwordResets/{id}':
+    get:
+      tags:
+        - PasswordResets
+      summary: 'Find PasswordResets by ID'
+      description: 'Returns a single PasswordResets'
+      operationId: getPasswordResetsById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of PasswordResets to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PasswordResets'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PasswordResets'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'PasswordResets not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - PasswordResets
+      summary: 'Update an existing PasswordResets'
+      operationId: updatePasswordResets
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'PasswordResets id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/PasswordResets'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'PasswordResets not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - PasswordResets
+      summary: 'Deletes a PasswordResets'
+      operationId: deletePasswordResets
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'PasswordResets id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /permissionRoles:
+    get:
+      tags:
+        - PermissionRole
+      summary: 'Find list PermissionRole'
+      description: 'Returns list of PermissionRole'
+      operationId: getPermissionRole
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/PermissionRole' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/PermissionRole' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/PermissionRole' } }
+                type: object
+        '404':
+          description: 'PermissionRole not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - PermissionRole
+      summary: 'Add a new PermissionRole to the store'
+      operationId: addPermissionRole
+      requestBody:
+        $ref: '#/components/requestBodies/PermissionRole'
+      responses:
+        '201':
+          description: 'Created PermissionRole'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionRole'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PermissionRole'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/permissionRoles/{id}':
+    get:
+      tags:
+        - PermissionRole
+      summary: 'Find PermissionRole by ID'
+      description: 'Returns a single PermissionRole'
+      operationId: getPermissionRoleById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of PermissionRole to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionRole'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/PermissionRole'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'PermissionRole not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - PermissionRole
+      summary: 'Update an existing PermissionRole'
+      operationId: updatePermissionRole
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'PermissionRole id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/PermissionRole'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'PermissionRole not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - PermissionRole
+      summary: 'Deletes a PermissionRole'
+      operationId: deletePermissionRole
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'PermissionRole id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /permissions:
+    get:
+      tags:
+        - Permissions
+      summary: 'Find list Permissions'
+      description: 'Returns list of Permissions'
+      operationId: getPermissions
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Permissions' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Permissions' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/Permissions' } }
+                type: object
+        '404':
+          description: 'Permissions not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - Permissions
+      summary: 'Add a new Permissions to the store'
+      operationId: addPermissions
+      requestBody:
+        $ref: '#/components/requestBodies/Permissions'
+      responses:
+        '201':
+          description: 'Created Permissions'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permissions'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Permissions'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/permissions/{id}':
+    get:
+      tags:
+        - Permissions
+      summary: 'Find Permissions by ID'
+      description: 'Returns a single Permissions'
+      operationId: getPermissionsById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of Permissions to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Permissions'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Permissions'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'Permissions not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - Permissions
+      summary: 'Update an existing Permissions'
+      operationId: updatePermissions
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Permissions id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/Permissions'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Permissions not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - Permissions
+      summary: 'Deletes a Permissions'
+      operationId: deletePermissions
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Permissions id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /posts:
+    get:
+      tags:
+        - Posts
+      summary: 'Find list Posts'
+      description: 'Returns list of Posts'
+      operationId: getPosts
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Posts' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Posts' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/Posts' } }
+                type: object
+        '404':
+          description: 'Posts not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - Posts
+      summary: 'Add a new Posts to the store'
+      operationId: addPosts
+      requestBody:
+        $ref: '#/components/requestBodies/Posts'
+      responses:
+        '201':
+          description: 'Created Posts'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Posts'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Posts'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/posts/{id}':
+    get:
+      tags:
+        - Posts
+      summary: 'Find Posts by ID'
+      description: 'Returns a single Posts'
+      operationId: getPostsById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of Posts to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Posts'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Posts'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'Posts not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - Posts
+      summary: 'Update an existing Posts'
+      operationId: updatePosts
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Posts id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/Posts'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Posts not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - Posts
+      summary: 'Deletes a Posts'
+      operationId: deletePosts
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Posts id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /roleUsers:
+    get:
+      tags:
+        - RoleUser
+      summary: 'Find list RoleUser'
+      description: 'Returns list of RoleUser'
+      operationId: getRoleUser
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/RoleUser' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/RoleUser' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/RoleUser' } }
+                type: object
+        '404':
+          description: 'RoleUser not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - RoleUser
+      summary: 'Add a new RoleUser to the store'
+      operationId: addRoleUser
+      requestBody:
+        $ref: '#/components/requestBodies/RoleUser'
+      responses:
+        '201':
+          description: 'Created RoleUser'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleUser'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RoleUser'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/roleUsers/{id}':
+    get:
+      tags:
+        - RoleUser
+      summary: 'Find RoleUser by ID'
+      description: 'Returns a single RoleUser'
+      operationId: getRoleUserById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of RoleUser to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoleUser'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/RoleUser'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'RoleUser not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - RoleUser
+      summary: 'Update an existing RoleUser'
+      operationId: updateRoleUser
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'RoleUser id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/RoleUser'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'RoleUser not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - RoleUser
+      summary: 'Deletes a RoleUser'
+      operationId: deleteRoleUser
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'RoleUser id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /roles:
+    get:
+      tags:
+        - Roles
+      summary: 'Find list Roles'
+      description: 'Returns list of Roles'
+      operationId: getRoles
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Roles' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Roles' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/Roles' } }
+                type: object
+        '404':
+          description: 'Roles not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - Roles
+      summary: 'Add a new Roles to the store'
+      operationId: addRoles
+      requestBody:
+        $ref: '#/components/requestBodies/Roles'
+      responses:
+        '201':
+          description: 'Created Roles'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Roles'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Roles'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/roles/{id}':
+    get:
+      tags:
+        - Roles
+      summary: 'Find Roles by ID'
+      description: 'Returns a single Roles'
+      operationId: getRolesById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of Roles to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Roles'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Roles'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'Roles not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - Roles
+      summary: 'Update an existing Roles'
+      operationId: updateRoles
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Roles id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/Roles'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Roles not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - Roles
+      summary: 'Deletes a Roles'
+      operationId: deleteRoles
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Roles id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /userProfiles:
+    get:
+      tags:
+        - UserProfile
+      summary: 'Find list UserProfile'
+      description: 'Returns list of UserProfile'
+      operationId: getUserProfile
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/UserProfile' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/UserProfile' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/UserProfile' } }
+                type: object
+        '404':
+          description: 'UserProfile not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - UserProfile
+      summary: 'Add a new UserProfile to the store'
+      operationId: addUserProfile
+      requestBody:
+        $ref: '#/components/requestBodies/UserProfile'
+      responses:
+        '201':
+          description: 'Created UserProfile'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/userProfiles/{id}':
+    get:
+      tags:
+        - UserProfile
+      summary: 'Find UserProfile by ID'
+      description: 'Returns a single UserProfile'
+      operationId: getUserProfileById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of UserProfile to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserProfile'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'UserProfile not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - UserProfile
+      summary: 'Update an existing UserProfile'
+      operationId: updateUserProfile
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'UserProfile id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/UserProfile'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'UserProfile not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - UserProfile
+      summary: 'Deletes a UserProfile'
+      operationId: deleteUserProfile
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'UserProfile id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /userSocialites:
+    get:
+      tags:
+        - UserSocialite
+      summary: 'Find list UserSocialite'
+      description: 'Returns list of UserSocialite'
+      operationId: getUserSocialite
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/UserSocialite' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/UserSocialite' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/UserSocialite' } }
+                type: object
+        '404':
+          description: 'UserSocialite not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - UserSocialite
+      summary: 'Add a new UserSocialite to the store'
+      operationId: addUserSocialite
+      requestBody:
+        $ref: '#/components/requestBodies/UserSocialite'
+      responses:
+        '201':
+          description: 'Created UserSocialite'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSocialite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserSocialite'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/userSocialites/{id}':
+    get:
+      tags:
+        - UserSocialite
+      summary: 'Find UserSocialite by ID'
+      description: 'Returns a single UserSocialite'
+      operationId: getUserSocialiteById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of UserSocialite to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSocialite'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/UserSocialite'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'UserSocialite not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - UserSocialite
+      summary: 'Update an existing UserSocialite'
+      operationId: updateUserSocialite
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'UserSocialite id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/UserSocialite'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'UserSocialite not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - UserSocialite
+      summary: 'Deletes a UserSocialite'
+      operationId: deleteUserSocialite
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'UserSocialite id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+  /users:
+    get:
+      tags:
+        - Users
+      summary: 'Find list Users'
+      description: 'Returns list of Users'
+      operationId: getUsers
+      parameters:
+        -
+          name: search
+          in: query
+          description: 'search by column defined'
+          schema:
+            type: object
+        -
+          name: order
+          in: query
+          description: 'order by column defined'
+          schema:
+            type: object
+        -
+          name: page
+          in: query
+          description: 'page to show'
+          schema:
+            type: int32
+        -
+          name: limit
+          in: query
+          description: 'count data display per page'
+          schema:
+            type: int32
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Users' } }
+                  pagination: { properties: { currentPage: { type: integer }, totalPage: { type: integer } }, type: object }
+                type: object
+            application/xml:
+              schema:
+                properties:
+                  data: { type: array, items: { $ref: '#/components/schemas/Users' } }
+                  pagination: { type: array, items: { $ref: '#/components/schemas/Users' } }
+                type: object
+        '404':
+          description: 'Users not found'
+      security:
+        -
+          bearer_auth: []
+    post:
+      tags:
+        - Users
+      summary: 'Add a new Users to the store'
+      operationId: addUsers
+      requestBody:
+        $ref: '#/components/requestBodies/Users'
+      responses:
+        '201':
+          description: 'Created Users'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '405':
+          description: 'Invalid input'
+      security:
+        -
+          bearer_auth: []
+  '/users/{id}':
+    get:
+      tags:
+        - Users
+      summary: 'Find Users by ID'
+      description: 'Returns a single Users'
+      operationId: getUsersById
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'ID of Users to return'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: 'successful operation'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Users'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/Users'
+        '400':
+          description: 'Invalid ID supplier'
+        '404':
+          description: 'Users not found'
+      security:
+        -
+          bearer_auth: []
+    put:
+      tags:
+        - Users
+      summary: 'Update an existing Users'
+      operationId: updateUsers
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Users id to update'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        $ref: '#/components/requestBodies/Users'
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Users not found'
+        '405':
+          description: 'Validation exception'
+      security:
+        -
+          bearer_auth: []
+    delete:
+      tags:
+        - Users
+      summary: 'Deletes a Users'
+      operationId: deleteUsers
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'Users id to delete'
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '400':
+          description: 'Invalid ID supplied'
+        '404':
+          description: 'Pet not found'
+      security:
+        -
+          bearer_auth: []
+components:
+  schemas:
+    FailedJobs:
+      title: FailedJobs
+      description: FailedJobs
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        uuid:
+          title: uuid
+          description: uuid
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        connection:
+          title: connection
+          description: connection
+          type: string
+          format: '-'
+          nullable: false
+        queue:
+          title: queue
+          description: queue
+          type: string
+          format: '-'
+          nullable: false
+        payload:
+          title: payload
+          description: payload
+          type: string
+          format: '-'
+          nullable: false
+        exception:
+          title: exception
+          description: exception
+          type: string
+          format: '-'
+          nullable: false
+        failed_at:
+          title: failed_at
+          description: failed_at
+          type: string
+          format: '-'
+          nullable: false
+      type: object
+    Migrations:
+      title: Migrations
+      description: Migrations
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 10
+          nullable: false
+        migration:
+          title: migration
+          description: migration
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        batch:
+          title: batch
+          description: batch
+          type: integer
+          format: '-'
+          maxLength: 11
+          nullable: false
+      type: object
+    PasswordResets:
+      title: PasswordResets
+      description: PasswordResets
+      properties:
+        email:
+          title: email
+          description: email
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        token:
+          title: token
+          description: token
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+    PermissionRole:
+      title: PermissionRole
+      description: PermissionRole
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 10
+          nullable: false
+        permission_id:
+          title: permission_id
+          description: permission_id
+          type: integer
+          format: '-'
+          maxLength: 10
+          nullable: false
+        role_id:
+          title: role_id
+          description: role_id
+          type: integer
+          format: '-'
+          maxLength: 10
+          nullable: false
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+        updated_at:
+          title: updated_at
+          description: updated_at
+          type: string
+          format: '-'
+          nullable: true
+        deleted_at:
+          title: deleted_at
+          description: deleted_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+    Permissions:
+      title: Permissions
+      description: Permissions
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 10
+          nullable: false
+        name:
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 191
+          nullable: false
+        slug:
+          title: slug
+          description: slug
+          type: string
+          format: '-'
+          maxLength: 191
+          nullable: false
+        description:
+          title: description
+          description: description
+          type: string
+          format: '-'
+          maxLength: 191
+          nullable: true
+        model:
+          title: model
+          description: model
+          type: string
+          format: '-'
+          maxLength: 191
+          nullable: true
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+        updated_at:
+          title: updated_at
+          description: updated_at
+          type: string
+          format: '-'
+          nullable: true
+        deleted_at:
+          title: deleted_at
+          description: deleted_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+    Posts:
+      title: Posts
+      description: Posts
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        user_id:
+          title: user_id
+          description: user_id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        title:
+          title: title
+          description: title
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        body:
+          title: body
+          description: body
+          type: string
+          format: '-'
+          nullable: false
+        cover_image:
+          title: cover_image
+          description: cover_image
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+        updated_at:
+          title: updated_at
+          description: updated_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+    RoleUser:
+      title: RoleUser
+      description: RoleUser
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        user_id:
+          title: user_id
+          description: user_id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        role_id:
+          title: role_id
+          description: role_id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+        updated_at:
+          title: updated_at
+          description: updated_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+    Roles:
+      title: Roles
+      description: Roles
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        name:
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+        updated_at:
+          title: updated_at
+          description: updated_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+    UserProfile:
+      title: UserProfile
+      description: UserProfile
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 10
+          nullable: false
+        user_id:
+          title: user_id
+          description: user_id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        full_name:
+          title: full_name
+          description: full_name
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        gender:
+          title: gender
+          description: gender
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        birthday:
+          title: birthday
+          description: birthday
+          type: string
+          format: date
+          nullable: false
+        avatar:
+          title: avatar
+          description: avatar
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+        updated_at:
+          title: updated_at
+          description: updated_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+    UserSocialite:
+      title: UserSocialite
+      description: UserSocialite
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        user_id:
+          title: user_id
+          description: user_id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        site:
+          title: site
+          description: site
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        account_id:
+          title: account_id
+          description: account_id
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+        updated_at:
+          title: updated_at
+          description: updated_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+    Users:
+      title: Users
+      description: Users
+      properties:
+        id:
+          title: id
+          description: id
+          type: integer
+          format: '-'
+          maxLength: 20
+          nullable: false
+        name:
+          title: name
+          description: name
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        email:
+          title: email
+          description: email
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        email_verified_at:
+          title: email_verified_at
+          description: email_verified_at
+          type: string
+          format: '-'
+          nullable: true
+        phone:
+          title: phone
+          description: phone
+          type: integer
+          format: '-'
+          maxLength: 11
+          nullable: false
+        password:
+          title: password
+          description: password
+          type: string
+          format: '-'
+          maxLength: 255
+          nullable: false
+        remember_token:
+          title: remember_token
+          description: remember_token
+          type: string
+          format: '-'
+          maxLength: 100
+          nullable: true
+        created_at:
+          title: created_at
+          description: created_at
+          type: string
+          format: '-'
+          nullable: true
+        updated_at:
+          title: updated_at
+          description: updated_at
+          type: string
+          format: '-'
+          nullable: true
+      type: object
+  requestBodies:
+    FailedJobs:
+      description: 'FailedJobs object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/FailedJobs'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/FailedJobs'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/FailedJobs'
+    Migrations:
+      description: 'Migrations object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/Migrations'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Migrations'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Migrations'
+    PasswordResets:
+      description: 'PasswordResets object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/PasswordResets'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/PasswordResets'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PasswordResets'
+    PermissionRole:
+      description: 'PermissionRole object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/PermissionRole'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/PermissionRole'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/PermissionRole'
+    Permissions:
+      description: 'Permissions object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/Permissions'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Permissions'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Permissions'
+    Posts:
+      description: 'Posts object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/Posts'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Posts'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Posts'
+    RoleUser:
+      description: 'RoleUser object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/RoleUser'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/RoleUser'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/RoleUser'
+    Roles:
+      description: 'Roles object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/Roles'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Roles'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Roles'
+    UserProfile:
+      description: 'UserProfile object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/UserProfile'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/UserProfile'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserProfile'
+    UserSocialite:
+      description: 'UserSocialite object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/UserSocialite'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/UserSocialite'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/UserSocialite'
+    Users:
+      description: 'Users object that needs to be added'
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            $ref: '#/components/schemas/Users'
+        application/xml:
+          schema:
+            $ref: '#/components/schemas/Users'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Users'
+tags:
+  -
+    name: FailedJobs
+    description: 'Everything about your FailedJobs'
+  -
+    name: Migrations
+    description: 'Everything about your Migrations'
+  -
+    name: PasswordResets
+    description: 'Everything about your PasswordResets'
+  -
+    name: PermissionRole
+    description: 'Everything about your PermissionRole'
+  -
+    name: Permissions
+    description: 'Everything about your Permissions'
+  -
+    name: Posts
+    description: 'Everything about your Posts'
+  -
+    name: RoleUser
+    description: 'Everything about your RoleUser'
+  -
+    name: Roles
+    description: 'Everything about your Roles'
+  -
+    name: UserProfile
+    description: 'Everything about your UserProfile'
+  -
+    name: UserSocialite
+    description: 'Everything about your UserSocialite'
+  -
+    name: Users
+    description: 'Everything about your Users'
